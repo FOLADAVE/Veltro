@@ -1,4 +1,6 @@
+import RevenueChart from "@/components/RevenueChart";
 import Image from "next/image";
+import { signOut } from "@/app/actions/auth"
 
 export default function DashboardPage() {
   return (
@@ -24,11 +26,15 @@ export default function DashboardPage() {
           </a>
         </nav>
         <div className="mt-auto">
-          <form action="/api/auth/signout" method="post">
-            <button className="text-sm text-slate-400 hover:text-white w-full text-left px-3 py-2 rounded-lg hover:bg-slate-800">
-              Sign out
-            </button>
-          </form>
+         
+<form action={signOut}>
+  <button
+    type="submit"
+    className="text-sm text-slate-400 hover:text-white w-full text-left px-3 py-2 rounded-lg hover:bg-slate-800"
+  >
+    Sign out
+  </button>
+</form>
         </div>
       </aside>
 
@@ -59,9 +65,7 @@ export default function DashboardPage() {
         {/* Chart Placeholder */}
         <div className="bg-slate-900 border border-slate-800 rounded-xl p-6 mb-6">
           <h3 className="text-white font-semibold mb-4">Revenue Overview</h3>
-          <div className="h-48 flex items-center justify-center text-slate-600 text-sm">
-            Chart coming soon...
-          </div>
+          <RevenueChart />
         </div>
 
         {/* Recent Activity */}
