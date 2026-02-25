@@ -6,7 +6,7 @@ export default function DashboardPage() {
     <>
       {/* Header */}
       <div className="mb-8">
-        <h2 className="text-2xl font-bold text-white">Good morning 👋</h2>
+        <h2 className="text-2xl font-bold text-white">Good day 👋</h2>
         <p className="text-slate-400 text-sm mt-1">Here&apos;s what&apos;s happening with your business today.</p>
       </div>
 
