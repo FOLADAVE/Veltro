@@ -1,3 +1,5 @@
+"use client";
+
 export default function BillingPage() {
   return (
     <>
@@ -53,9 +55,16 @@ export default function BillingPage() {
               </li>
             ))}
           </ul>
-          <button className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2.5 rounded-lg text-sm transition-colors">
-            Upgrade to Pro
-          </button>
+         <button
+  onClick={async () => {
+    const res = await fetch("/api/stripe/checkout", { method: "POST" });
+    const data = await res.json();
+    if (data.url) window.location.href = data.url;
+  }}
+  className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2.5 rounded-lg text-sm transition-colors"
+>
+  Upgrade to Pro
+</button>
         </div>
       </div>
 
