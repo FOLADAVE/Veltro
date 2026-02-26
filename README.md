@@ -1,38 +1,132 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Veltro
 
-## Getting Started
-<img width="1333" height="583" alt="image" src="https://github.com/user-attachments/assets/3583d864-1ae6-46a0-8aa7-b431e5828575" />
+**Business analytics, simplified.**
 
-First, run the development server:
+Veltro is a full-stack SaaS dashboard platform where businesses can sign up, manage their analytics, and subscribe to a Pro plan — all in a clean, modern interface.
+<img width="1339" height="599" alt="image" src="https://github.com/user-attachments/assets/99c9476d-9af2-4bb0-87f5-b4a1d093e3cb" />
 
-```bash
+![Veltro Dashboard](public/veltro.png)
 
+## 🚀 Live Demo
 
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+[https://veltro-plum.vercel.app](https://veltro-plum.vercel.app)
+
+## ✨ Features
+
+- **Authentication** — Secure signup, login, and logout powered by Supabase
+- **Protected Routes** — Middleware-based route protection
+- **Dashboard** — Overview of key business metrics with a live area chart
+- **Analytics** — Monthly revenue bar chart and user growth line chart
+- **Customers** — Table view of all customers with plan and status badges
+- **Billing** — Subscription plan management with real Stripe checkout
+- **Settings** — Profile, password, and account management
+- **Fully Responsive** — Mobile-friendly with hamburger navigation
+- **Dark Mode UI** — Clean, professional dark theme throughout
+
+## 🛠 Tech Stack
+
+| Technology | Purpose |
+|------------|---------|
+| [Next.js 14](https://nextjs.org) | React framework with App Router |
+| [TypeScript](https://www.typescriptlang.org) | Type safety |
+| [Tailwind CSS](https://tailwindcss.com) | Utility-first styling |
+| [shadcn/ui](https://ui.shadcn.com) | UI component library |
+| [Supabase](https://supabase.com) | Authentication & database |
+| [Stripe](https://stripe.com) | Payment processing & subscriptions |
+| [Recharts](https://recharts.org) | Data visualization |
+| [Lucide React](https://lucide.dev) | Icon library |
+| [Vercel](https://vercel.com) | Deployment & hosting |
+
+## 📁 Project Structure
+
+```
+veltro/
+├── src/
+│   ├── app/
+│   │   ├── (auth)/
+│   │   │   ├── login/
+│   │   │   └── signup/
+│   │   ├── api/
+│   │   │   └── stripe/
+│   │   │       └── checkout/
+│   │   ├── dashboard/
+│   │   │   ├── analytics/
+│   │   │   ├── billing/
+│   │   │   ├── customers/
+│   │   │   ├── settings/
+│   │   │   ├── layout.tsx
+│   │   │   └── page.tsx
+│   │   ├── actions/
+│   │   │   └── auth.ts
+│   │   └── page.tsx
+│   ├── components/
+│   │   └── RevenueChart.tsx
+│   └── lib/
+│       ├── auth.ts
+│       ├── stripe.ts
+│       └── utils.ts
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🔧 Getting Started
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Prerequisites
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Node.js 18+
+- A [Supabase](https://supabase.com) account
+- A [Stripe](https://stripe.com) account
 
-## Learn More
+### Installation
 
-To learn more about Next.js, take a look at the following resources:
+1. Clone the repository:
+```bash
+git clone https://github.com/FOLADAVE/Veltro.git
+cd veltro
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. Install dependencies:
+```bash
+npm install
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+3. Create a `.env.local` file in the root directory:
+```env
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+STRIPE_SECRET_KEY=your_stripe_secret_key
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=your_stripe_publishable_key
+STRIPE_PRO_PRICE_ID=your_stripe_price_id
+NEXT_PUBLIC_APP_URL=http://localhost:3000
+```
 
-## Deploy on Vercel
+4. Run the development server:
+```bash
+npm run dev
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+5. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 💳 Test Stripe Payments
+
+Use these test card details to try the checkout flow:
+
+- **Card Number:** `4242 4242 4242 4242`
+- **Expiry:** Any future date
+- **CVC:** Any 3 digits
+
+## 🚢 Deployment
+
+This project is deployed on [Vercel](https://vercel.com). To deploy your own instance:
+
+1. Push your code to GitHub
+2. Import the repository on Vercel
+3. Add all environment variables from `.env.local`
+4. Deploy
+
+## 👨‍💻 Author
+
+**Folarin Dave**
+- GitHub: [@FOLADAVE](https://github.com/FOLADAVE)
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
