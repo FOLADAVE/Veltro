@@ -5,7 +5,9 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 First, run the development server:
 
 ```bash
-npm run dev
+npm run dev<img width="1333" height="583" alt="image" src="https://github.com/user-attachments/assets/32d6f708-ce1d-45f5-8744-6c257d36876c" />
+![Uploading image.png…]()
+
 # or
 yarn dev
 # or
