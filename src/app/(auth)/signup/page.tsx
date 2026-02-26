@@ -24,7 +24,7 @@ export default function SignupPage({
             <input
               type="text"
               name="name"
-              placeholder="Daniel Haastrup"
+              placeholder="John Doe"
               required
               className="w-full bg-slate-800 border border-slate-700 text-white rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-indigo-500"
             />
