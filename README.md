@@ -3,9 +3,10 @@
 **Business analytics, simplified.**
 
 Veltro is a full-stack SaaS dashboard platform where businesses can sign up, manage their analytics, and subscribe to a Pro plan — all in a clean, modern interface.
-<img width="1339" height="599" alt="image" src="https://github.com/user-attachments/assets/99c9476d-9af2-4bb0-87f5-b4a1d093e3cb" />
 
-![Veltro Dashboard](public/veltro.png)
+
+![Veltro Dashboard]<img width="1339" height="599" alt="image" src="https://github.com/user-attachments/assets/99c9476d-9af2-4bb0-87f5-b4a1d093e3cb" />
+
 
 ## 🚀 Live Demo
 
