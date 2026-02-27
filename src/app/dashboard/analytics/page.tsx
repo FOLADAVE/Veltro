@@ -40,7 +40,7 @@ export default function AnalyticsPage() {
         {[
           { label: "Avg. Monthly Revenue", value: "$11,247" },
           { label: "Total Users", value: "7,750" },
-          { label: "Best Month", value: "March" },
+          { label: "Best Month", value: "June" },
         ].map((stat) => (
           <div key={stat.label} className="bg-slate-900 border border-slate-800 rounded-xl p-5">
             <p className="text-slate-400 text-sm mb-1">{stat.label}</p>
