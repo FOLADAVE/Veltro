@@ -4,12 +4,13 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { signOut } from "@/app/actions/auth";
-import { Menu, X, LayoutDashboard, BarChart2, Users, CreditCard, Settings, LogOut } from "lucide-react";
+import { Menu, X, LayoutDashboard, Users, FolderOpen, FileText, CreditCard, Settings, LogOut } from "lucide-react";
 
 const navItems = [
   { label: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
-  { label: "Analytics", href: "/dashboard/analytics", icon: BarChart2 },
-  { label: "Customers", href: "/dashboard/customers", icon: Users },
+  { label: "Clients", href: "/dashboard/clients", icon: Users },
+  { label: "Projects", href: "/dashboard/projects", icon: FolderOpen },
+  { label: "Invoices", href: "/dashboard/invoices", icon: FileText },
   { label: "Billing", href: "/dashboard/billing", icon: CreditCard },
   { label: "Settings", href: "/dashboard/settings", icon: Settings },
 ];
