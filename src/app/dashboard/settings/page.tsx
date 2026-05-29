@@ -174,7 +174,7 @@ export default function SettingsPage() {
               )}
             </div>
           </div>
-
+  
           <button
             onClick={handleSaveProfile}
             disabled={saving}
