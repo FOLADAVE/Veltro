@@ -1,14 +1,38 @@
 import Link from "next/link";
 import Image from "next/image";
-import { BarChart2, Shield, Zap, Users, CreditCard, Settings } from "lucide-react";
+import { BarChart2, Shield, Users, CreditCard, FolderOpen, FileText } from "lucide-react";
 
 const features = [
-  { icon: BarChart2, title: "Real-time Analytics", description: "Track revenue, users, and growth with beautiful interactive charts." },
-  { icon: Shield, title: "Secure Authentication", description: "Enterprise-grade auth with Supabase. Your data is always protected." },
-  { icon: Zap, title: "Lightning Fast", description: "Built with Next.js 14 and optimized for performance from day one." },
-  { icon: Users, title: "Customer Management", description: "View and manage all your customers in one clean, organized table." },
-  { icon: CreditCard, title: "Stripe Billing", description: "Accept payments and manage subscriptions with Stripe integration." },
-  { icon: Settings, title: "Full Customization", description: "Update your profile, password, and account preferences anytime." },
+  {
+    icon: Users,
+    title: "Client Management",
+    description: "Add and manage all your clients in one place. No more scrolling through WhatsApp chats to find a client's details.",
+  },
+  {
+    icon: FolderOpen,
+    title: "Project Tracking",
+    description: "Track every project, its status, budget and deadline. Know exactly what you're working on and what's due.",
+  },
+  {
+    icon: FileText,
+    title: "Invoice Management",
+    description: "Create invoices, track who has paid and who hasn't. Stop chasing clients in DMs for your money.",
+  },
+  {
+    icon: BarChart2,
+    title: "Revenue Dashboard",
+    description: "See your monthly revenue, active clients and pending invoices at a glance. Know your numbers at all times.",
+  },
+  {
+    icon: CreditCard,
+    title: "Subscription Billing",
+    description: "Simple, transparent pricing. Upgrade to Pro when your business grows and needs more power.",
+  },
+  {
+    icon: Shield,
+    title: "Secure & Private",
+    description: "Your business data is yours alone. Enterprise-grade security with Supabase keeps everything protected.",
+  },
 ];
 
 export default function HomePage() {
@@ -31,15 +55,14 @@ export default function HomePage() {
       {/* Hero */}
       <section className="max-w-6xl mx-auto px-6 py-24 text-center">
         <div className="inline-flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs px-3 py-1.5 rounded-full mb-6">
-          <Zap size={12} />
-          Now with Stripe billing integration
+          🇳🇬 Built for Nigerian freelancers & agencies
         </div>
         <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
-          Your business,
-          <span className="text-indigo-400"> at a glance</span>
+          Stop managing your
+          <span className="text-indigo-400"> business in WhatsApp</span>
         </h1>
         <p className="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto mb-10">
-          Veltro gives you a powerful dashboard to track revenue, manage customers, and grow your business — all in one place.
+          Veltro gives Nigerian freelancers and agencies one clean dashboard to manage clients, track projects, send invoices and monitor revenue — all in one place.
         </p>
         <div className="flex items-center justify-center gap-4 flex-wrap">
           <Link href="/signup" className="bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-8 py-3 rounded-lg transition-colors text-sm">
@@ -51,11 +74,23 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Problem Statement */}
+      <section className="max-w-3xl mx-auto px-6 pb-20 text-center">
+        <div className="bg-slate-900 border border-slate-800 rounded-2xl p-8">
+          <p className="text-slate-300 text-lg leading-relaxed">
+            You&apos;re a skilled freelancer. You deliver great work. But your business is scattered — client contacts in WhatsApp, project details in your head, invoices in Excel, and revenue tracked with your fingers.
+          </p>
+          <p className="text-indigo-400 font-medium text-lg mt-4">
+            You deserve to run your freelance business like a real business.
+          </p>
+        </div>
+      </section>
+
       {/* Features */}
       <section className="max-w-6xl mx-auto px-6 py-20">
         <div className="text-center mb-14">
-          <h2 className="text-3xl font-bold text-white mb-3">Everything you need</h2>
-          <p className="text-slate-400">Built for modern businesses that move fast.</p>
+          <h2 className="text-3xl font-bold text-white mb-3">Everything you need to run your business</h2>
+          <p className="text-slate-400">Built specifically for how Nigerian freelancers actually work.</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {features.map(({ icon: Icon, title, description }) => (
@@ -70,11 +105,32 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Social Proof */}
+      <section className="max-w-6xl mx-auto px-6 py-20">
+        <div className="text-center mb-14">
+          <h2 className="text-3xl font-bold text-white mb-3">Who is Veltro for?</h2>
+          <p className="text-slate-400">If you earn from client work, Veltro is for you.</p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {[
+            { emoji: "💻", role: "Frontend Developers", desc: "Track client projects, manage retainers and know your monthly revenue." },
+            { emoji: "🎨", role: "Designers", desc: "Manage design briefs, client feedback rounds and send professional invoices." },
+            { emoji: "✍️", role: "Copywriters & Marketers", desc: "Track content projects, client deliverables and chase payments professionally." },
+          ].map((item) => (
+            <div key={item.role} className="bg-slate-900 border border-slate-800 rounded-xl p-6 text-center">
+              <div className="text-4xl mb-4">{item.emoji}</div>
+              <h3 className="text-white font-semibold mb-2">{item.role}</h3>
+              <p className="text-slate-400 text-sm leading-relaxed">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* Pricing */}
       <section className="max-w-6xl mx-auto px-6 py-20">
         <div className="text-center mb-14">
-          <h2 className="text-3xl font-bold text-white mb-3">Simple pricing</h2>
-          <p className="text-slate-400">Start free, upgrade when you need more.</p>
+          <h2 className="text-3xl font-bold text-white mb-3">Simple, honest pricing</h2>
+          <p className="text-slate-400">Start free. Upgrade when your business grows.</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
           {/* Free */}
@@ -83,7 +139,7 @@ export default function HomePage() {
             <p className="text-4xl font-bold text-white mb-1">$0<span className="text-slate-400 text-base font-normal">/month</span></p>
             <p className="text-slate-400 text-sm mb-6">Perfect for getting started</p>
             <ul className="flex flex-col gap-3 mb-8">
-              {["Up to 3 projects", "Basic analytics", "1 team member", "Email support"].map((f) => (
+              {["Up to 3 clients", "Up to 3 projects", "Basic invoice management", "Revenue dashboard"].map((f) => (
                 <li key={f} className="flex items-center gap-2 text-sm text-slate-300">
                   <span className="text-green-400">✓</span> {f}
                 </li>
@@ -101,9 +157,16 @@ export default function HomePage() {
             </span>
             <h3 className="text-white font-bold text-xl mb-1">Pro</h3>
             <p className="text-4xl font-bold text-white mb-1">$29<span className="text-slate-400 text-base font-normal">/month</span></p>
-            <p className="text-slate-400 text-sm mb-6">For growing businesses</p>
+            <p className="text-slate-400 text-sm mb-6">For serious freelancers & agencies</p>
             <ul className="flex flex-col gap-3 mb-8">
-              {["Unlimited projects", "Advanced analytics", "Up to 10 team members", "Priority support", "Custom integrations", "Stripe billing"].map((f) => (
+              {[
+                "Unlimited clients",
+                "Unlimited projects",
+                "Full invoice management",
+                "Advanced revenue analytics",
+                "Priority support",
+                "Early access to new features",
+              ].map((f) => (
                 <li key={f} className="flex items-center gap-2 text-sm text-slate-300">
                   <span className="text-green-400">✓</span> {f}
                 </li>
@@ -114,6 +177,19 @@ export default function HomePage() {
             </Link>
           </div>
         </div>
+      </section>
+
+      {/* CTA */}
+      <section className="max-w-3xl mx-auto px-6 py-20 text-center">
+        <h2 className="text-3xl font-bold text-white mb-4">
+          Ready to run your business properly?
+        </h2>
+        <p className="text-slate-400 mb-8">
+          Join Nigerian freelancers and agencies already using Veltro to manage their business like a professional.
+        </p>
+        <Link href="/signup" className="bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-10 py-3 rounded-lg transition-colors text-sm">
+          Get started for free
+        </Link>
       </section>
 
       {/* Footer */}
