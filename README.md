@@ -1,28 +1,33 @@
 # Veltro
 
-**Business analytics, simplified.**
+**Stop managing your business in WhatsApp.**
 
-Veltro is a full-stack SaaS dashboard platform where businesses can sign up, manage their analytics, and subscribe to a Pro plan — all in a clean, modern interface.
+Veltro is a business management dashboard built specifically for Nigerian freelancers and creative agencies. One clean platform to manage clients, track projects, send invoices and monitor revenue.
 
-
-![Veltro Dashboard]<img width="1339" height="599" alt="image" src="https://github.com/user-attachments/assets/99c9476d-9af2-4bb0-87f5-b4a1d093e3cb" />
-
+![Veltro Dashboard](public/veltro.png)
 
 ## 🚀 Live Demo
 
 [https://veltro-plum.vercel.app](https://veltro-plum.vercel.app)
 
+## 🎯 Who is it for?
+
+- **Frontend Developers** — track client projects, manage retainers and know your monthly revenue
+- **Designers** — manage design briefs, client feedback rounds and send professional invoices
+- **Copywriters & Marketers** — track content projects, client deliverables and chase payments professionally
+
 ## ✨ Features
 
-- **Authentication** — Secure signup, login, and logout powered by Supabase
-- **Protected Routes** — Middleware-based route protection
-- **Dashboard** — Overview of key business metrics with a live area chart
-- **Analytics** — Monthly revenue bar chart and user growth line chart
-- **Customers** — Table view of all customers with plan and status badges
-- **Billing** — Subscription plan management with real Stripe checkout
-- **Settings** — Profile, password, and account management
-- **Fully Responsive** — Mobile-friendly with hamburger navigation
-- **Dark Mode UI** — Clean, professional dark theme throughout
+- **Client Management** — add, edit, delete and search all your clients
+- **Project Tracking** — track projects linked to clients with status, budget and deadlines
+- **Invoice Management** — create invoices, track paid and unpaid amounts in ₦
+- **Revenue Dashboard** — real stats pulled from your data — monthly revenue, active clients, projects in progress, pending invoices
+- **Live Revenue Chart** — area chart showing your monthly paid invoice revenue for the current year
+- **Stripe Billing** — real subscription payments with webhook to update plan in database
+- **Secure Authentication** — signup, login, logout with Supabase auth and protected routes
+- **Row Level Security** — every user sees only their own data
+- **Fully Responsive** — mobile-friendly with hamburger navigation
+- **Settings** — update profile, business name and password
 
 ## 🛠 Tech Stack
 
@@ -31,42 +36,42 @@ Veltro is a full-stack SaaS dashboard platform where businesses can sign up, man
 | [Next.js 14](https://nextjs.org) | React framework with App Router |
 | [TypeScript](https://www.typescriptlang.org) | Type safety |
 | [Tailwind CSS](https://tailwindcss.com) | Utility-first styling |
-| [shadcn/ui](https://ui.shadcn.com) | UI component library |
-| [Supabase](https://supabase.com) | Authentication & database |
+| [Supabase](https://supabase.com) | Authentication, database & Row Level Security |
 | [Stripe](https://stripe.com) | Payment processing & subscriptions |
-| [Recharts](https://recharts.org) | Data visualization |
+| [Recharts](https://recharts.org) | Real-time data visualization |
 | [Lucide React](https://lucide.dev) | Icon library |
 | [Vercel](https://vercel.com) | Deployment & hosting |
 
 ## 📁 Project Structure
 
-```
 veltro/
 ├── src/
-│   ├── app/
-│   │   ├── (auth)/
-│   │   │   ├── login/
-│   │   │   └── signup/
-│   │   ├── api/
-│   │   │   └── stripe/
-│   │   │       └── checkout/
-│   │   ├── dashboard/
-│   │   │   ├── analytics/
-│   │   │   ├── billing/
-│   │   │   ├── customers/
-│   │   │   ├── settings/
-│   │   │   ├── layout.tsx
-│   │   │   └── page.tsx
-│   │   ├── actions/
-│   │   │   └── auth.ts
-│   │   └── page.tsx
-│   ├── components/
-│   │   └── RevenueChart.tsx
-│   └── lib/
-│       ├── auth.ts
-│       ├── stripe.ts
-│       └── utils.ts
-```
+│ ├── app/
+│ │ ├── (auth)/
+│ │ │ ├── login/
+│ │ │ └── signup/
+│ │ ├── api/
+│ │ │ └── stripe/
+│ │ │ ├── checkout/
+│ │ │ └── webhook/
+│ │ ├── dashboard/
+│ │ │ ├── billing/
+│ │ │ ├── clients/
+│ │ │ ├── invoices/
+│ │ │ ├── projects/
+│ │ │ ├── settings/
+│ │ │ ├── layout.tsx
+│ │ │ └── page.tsx
+│ │ ├── actions/
+│ │ │ └── auth.ts
+│ │ └── page.tsx
+│ ├── components/
+│ │ └── RevenueChart.tsx
+│ └── lib/
+│ ├── auth.ts
+│ ├── db.ts
+│ └── supabase.ts
+
 
 ## 🔧 Getting Started
 
@@ -93,18 +98,25 @@ npm install
 ```env
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
 STRIPE_SECRET_KEY=your_stripe_secret_key
 NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=your_stripe_publishable_key
 STRIPE_PRO_PRICE_ID=your_stripe_price_id
+STRIPE_WEBHOOK_SECRET=your_stripe_webhook_secret
 NEXT_PUBLIC_APP_URL=http://localhost:3000
 ```
 
-4. Run the development server:
+4. Set up your Supabase database by running the SQL in the Supabase SQL editor:
+```sql
+-- See /supabase/schema.sql for full schema
+```
+
+5. Run the development server:
 ```bash
 npm run dev
 ```
 
-5. Open [http://localhost:3000](http://localhost:3000) in your browser.
+6. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## 💳 Test Stripe Payments
 
@@ -120,13 +132,14 @@ This project is deployed on [Vercel](https://vercel.com). To deploy your own ins
 
 1. Push your code to GitHub
 2. Import the repository on Vercel
-3. Add all environment variables from `.env.local`
+3. Add all environment variables
 4. Deploy
 
 ## 👨‍💻 Author
 
-**Folarin Dave**
+**Folarin Obajenihi**
 - GitHub: [@FOLADAVE](https://github.com/FOLADAVE)
+- Portfolio: [your portfolio URL]
 
 ## 📄 License
 
