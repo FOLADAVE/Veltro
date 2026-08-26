@@ -1,6 +1,28 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import { createClient } from "../../../lib/supabase";
+
 export default function BillingPage() {
+  const [plan, setPlan] = useState<"free" | "pro">("free");
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function loadPlan() {
+      const supabase = createClient();
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) return;
+      const { data } = await supabase
+        .from("profiles")
+        .select("plan")
+        .eq("id", user.id)
+        .single();
+      if (data) setPlan(data.plan);
+      setLoading(false);
+    }
+    loadPlan();
+  }, []);
+
   return (
     <>
       {/* Header */}
@@ -14,17 +36,31 @@ export default function BillingPage() {
         <div className="flex items-center justify-between">
           <div>
             <p className="text-slate-400 text-sm mb-1">Current Plan</p>
-            <h3 className="text-white text-xl font-bold">Free Plan</h3>
-            <p className="text-slate-400 text-sm mt-1">You are currently on the free plan.</p>
+            <h3 className="text-white text-xl font-bold">
+              {loading ? "Loading..." : plan === "pro" ? "Pro Plan" : "Free Plan"}
+            </h3>
+            <p className="text-slate-400 text-sm mt-1">
+              {plan === "pro"
+                ? "You have access to all Pro features."
+                : "You are currently on the free plan."}
+            </p>
           </div>
-          <span className="bg-slate-700 text-slate-300 text-xs px-3 py-1 rounded-full font-medium">Free</span>
+          <span className={`text-xs px-3 py-1 rounded-full font-medium ${
+            plan === "pro"
+              ? "bg-indigo-500/20 text-indigo-400"
+              : "bg-slate-700 text-slate-300"
+          }`}>
+            {plan === "pro" ? "Pro" : "Free"}
+          </span>
         </div>
       </div>
 
       {/* Pricing Plans */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
         {/* Free Plan */}
-        <div className="bg-slate-900 border border-slate-800 rounded-xl p-6">
+        <div className={`bg-slate-900 rounded-xl p-6 border ${
+          plan === "free" ? "border-indigo-500" : "border-slate-800"
+        }`}>
           <h3 className="text-white font-bold text-lg mb-1">Free</h3>
           <p className="text-3xl font-bold text-white mb-1">$0<span className="text-slate-400 text-sm font-normal">/month</span></p>
           <p className="text-slate-400 text-sm mb-6">Perfect for getting started</p>
@@ -35,13 +71,18 @@ export default function BillingPage() {
               </li>
             ))}
           </ul>
-          <button disabled className="w-full bg-slate-700 text-slate-400 font-medium py-2.5 rounded-lg text-sm cursor-not-allowed">
-            Current Plan
+          <button
+            disabled
+            className="w-full bg-slate-700 text-slate-400 font-medium py-2.5 rounded-lg text-sm cursor-not-allowed"
+          >
+            {plan === "free" ? "Current Plan" : "Downgrade"}
           </button>
         </div>
 
         {/* Pro Plan */}
-        <div className="bg-slate-900 border border-indigo-500 rounded-xl p-6 relative">
+        <div className={`bg-slate-900 rounded-xl p-6 relative border ${
+          plan === "pro" ? "border-indigo-500" : "border-slate-800"
+        }`}>
           <span className="absolute top-4 right-4 bg-indigo-500 text-white text-xs px-2.5 py-1 rounded-full font-medium">
             Popular
           </span>
@@ -55,16 +96,25 @@ export default function BillingPage() {
               </li>
             ))}
           </ul>
-         <button
-  onClick={async () => {
-    const res = await fetch("/api/stripe/checkout", { method: "POST" });
-    const data = await res.json();
-    if (data.url) window.location.href = data.url;
-  }}
-  className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2.5 rounded-lg text-sm transition-colors"
->
-  Upgrade to Pro
-</button>
+          {plan === "pro" ? (
+            <button
+              disabled
+              className="w-full bg-indigo-500/20 text-indigo-400 font-medium py-2.5 rounded-lg text-sm cursor-not-allowed"
+            >
+              Current Plan ✓
+            </button>
+          ) : (
+            <button
+              onClick={async () => {
+                const res = await fetch("/api/stripe/checkout", { method: "POST" });
+                const data = await res.json();
+                if (data.url) window.location.href = data.url;
+              }}
+              className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2.5 rounded-lg text-sm transition-colors"
+            >
+              Upgrade to Pro
+            </button>
+          )}
         </div>
       </div>
 
